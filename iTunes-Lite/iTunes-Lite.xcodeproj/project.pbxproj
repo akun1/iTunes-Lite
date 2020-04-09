@@ -15,6 +15,7 @@
 		C0432200243FB65C007CF416 /* iTunesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04321FF243FB65C007CF416 /* iTunesService.swift */; };
 		C0432202243FB810007CF416 /* iTunesResponseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0432201243FB810007CF416 /* iTunesResponseObject.swift */; };
 		C0432204243FBDC1007CF416 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0432203243FBDC1007CF416 /* SearchTableViewController.swift */; };
+		C0432206243FD67C007CF416 /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0432205243FD67C007CF416 /* SearchResultTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		C04321FF243FB65C007CF416 /* iTunesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesService.swift; sourceTree = "<group>"; };
 		C0432201243FB810007CF416 /* iTunesResponseObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesResponseObject.swift; sourceTree = "<group>"; };
 		C0432203243FBDC1007CF416 /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
+		C0432205243FD67C007CF416 /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				C04321F9243FB5A5007CF416 /* Info.plist */,
 				C04321FF243FB65C007CF416 /* iTunesService.swift */,
 				C0432201243FB810007CF416 /* iTunesResponseObject.swift */,
+				C0432205243FD67C007CF416 /* SearchResultTableViewCell.swift */,
 			);
 			path = "iTunes-Lite";
 			sourceTree = "<group>";
@@ -146,6 +149,7 @@
 			files = (
 				C0432204243FBDC1007CF416 /* SearchTableViewController.swift in Sources */,
 				C04321EC243FB5A4007CF416 /* AppDelegate.swift in Sources */,
+				C0432206243FD67C007CF416 /* SearchResultTableViewCell.swift in Sources */,
 				C0432202243FB810007CF416 /* iTunesResponseObject.swift in Sources */,
 				C04321EE243FB5A4007CF416 /* SceneDelegate.swift in Sources */,
 				C0432200243FB65C007CF416 /* iTunesService.swift in Sources */,

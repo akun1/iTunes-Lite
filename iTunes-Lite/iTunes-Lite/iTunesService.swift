@@ -8,67 +8,18 @@
 
 import Foundation
 
-// From iTunes API Docs:
-enum MediaKind: Int, CaseIterable {
-    case book = 0
-    case album
-    case coachedAudio
-    case featureMovie
-    case interactiveBooklet
-    case musicVideo
-    case pdf
-    case podcast
-    case podcastEpisode
-    case softwarePackage
-    case song
-    case tvEpisode
-    case artistFor
-    
-    var string: String {
-        switch self {
-        case .book:
-            return "book"
-        case .album:
-            return "album"
-        case .coachedAudio:
-            return "coached-audio"
-        case .featureMovie:
-            return "feature-movie"
-        case .interactiveBooklet:
-            return "interactive-booklet"
-        case .musicVideo:
-            return "music-video"
-        case .pdf:
-            return "pdf"
-        case .podcast:
-            return "podcast"
-        case .podcastEpisode:
-            return "podcast-episode"
-        case .softwarePackage:
-            return "software-package"
-        case .song:
-            return "song"
-        case .tvEpisode:
-            return "tv-episode"
-        case .artistFor:
-            return "artist-for"
-        }
-    }
-}
-
-
 /// Object for internally formatted JSON result.
 struct iTunesServiceAPIResult: Codable {
-    var id: Int // trackId (ID of entity)
-    var name: String // name of entity
-    var artwork: String // URL of the artwork
-    var genre: String // Genre of entity
-    var url: String // trackViewUrl
+    var id: Int
+    var name: String
+    var artwork: String
+    var genre: String
+    var url: String
     
     init(from result: iTunesResult) {
         self.id = result.trackID ?? 0
         self.name = result.trackName ?? ""
-        self.artwork = result.artworkUrl30 ?? ""
+        self.artwork = result.artworkUrl100 ?? ""
         self.genre = result.primaryGenreName ?? ""
         self.url = result.trackViewURL ?? ""
     }
@@ -83,7 +34,7 @@ final class iTunesService {
     
     // MARK: - Private APIs for iTunes Calls
     
-    /// Searches itunes via given api.
+    /// Search iTunes via given api.
     private func searchItunes(with query: String, completion: @escaping ([iTunesResult]) -> Void) {
         guard let url = URL(string: baseEnpoint + query) else {
             completion([])

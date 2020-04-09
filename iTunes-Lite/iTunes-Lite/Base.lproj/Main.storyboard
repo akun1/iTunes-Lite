@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="32T-4C-XGs">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16096"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -15,13 +15,61 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="181" id="tV8-0Q-W6A">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="181" id="tV8-0Q-W6A" customClass="SearchResultTableViewCell" customModule="iTunes_Lite" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="181"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tV8-0Q-W6A" id="Qbn-6n-2WF">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="181"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="jeD-dr-GPV">
+                                            <rect key="frame" x="20" y="20" width="374" height="141"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RXD-jZ-Z88">
+                                                    <rect key="frame" x="0.0" y="0.0" width="79.5" height="141"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="RXD-jZ-Z88" secondAttribute="height" multiplier="9:16" id="9bh-P5-Tu3"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="5wJ-Vb-0Ju">
+                                                    <rect key="frame" x="95.5" y="0.0" width="278.5" height="141"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Once Upon a Time in Hollywood" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DFJ-8R-5U3">
+                                                            <rect key="frame" x="0.0" y="0.0" width="278.5" height="48.5"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Drama" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ShT-kv-dkg">
+                                                            <rect key="frame" x="0.0" y="48.5" width="278.5" height="46.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="https://link.com" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HGh-fb-InX">
+                                                            <rect key="frame" x="0.0" y="95" width="278.5" height="46"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="jeD-dr-GPV" secondAttribute="bottom" constant="20" symbolic="YES" id="PlR-q1-qvI"/>
+                                        <constraint firstItem="jeD-dr-GPV" firstAttribute="leading" secondItem="Qbn-6n-2WF" secondAttribute="leading" constant="20" symbolic="YES" id="g7D-ui-1tt"/>
+                                        <constraint firstItem="jeD-dr-GPV" firstAttribute="top" secondItem="Qbn-6n-2WF" secondAttribute="top" constant="20" symbolic="YES" id="nIj-gE-iAA"/>
+                                        <constraint firstAttribute="trailing" secondItem="jeD-dr-GPV" secondAttribute="trailing" constant="20" symbolic="YES" id="pec-9H-lUy"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="genreLabel" destination="ShT-kv-dkg" id="f5O-cv-j54"/>
+                                    <outlet property="itunesLinkLabel" destination="HGh-fb-InX" id="5ac-Pj-jtV"/>
+                                    <outlet property="resultImageView" destination="RXD-jZ-Z88" id="2hB-Kw-77I"/>
+                                    <outlet property="titleLabel" destination="DFJ-8R-5U3" id="I61-Hh-mEd"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
