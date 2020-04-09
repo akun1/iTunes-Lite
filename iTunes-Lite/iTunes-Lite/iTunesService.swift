@@ -73,10 +73,15 @@ struct iTunesServiceAPIResult: Codable {
 }
 
 final class iTunesService {
+    
+    // MARK: - Properties
+    
     static var shared = iTunesService()
     private var baseEnpoint = "https://itunes.apple.com/search?term="//jack+johnson
     
-    public func searchItunes(with query: String, completion: @escaping ([iTunesResult]) -> Void) {
+    // MARK: - Private APIs
+    
+    private func searchItunes(with query: String, completion: @escaping ([iTunesResult]) -> Void) {
         guard let url = URL(string: baseEnpoint + query) else {
             completion([])
             return
@@ -97,28 +102,41 @@ final class iTunesService {
                 completion([])
                 return
             }
-
-            let kinds = Set(results.compactMap({ $0.kind }))
-            
-            var jsonArray = [String: [iTunesServiceAPIResult]]()
-            for kind in kinds {
-                jsonArray[kind] = results
-                    .filter({ $0.kind == kind })
-                    .compactMap({ iTunesServiceAPIResult(from: $0) })
-
-                do {
-                    let jsonData = try JSONEncoder().encode(jsonArray)
-                    let jsonString = String(data: jsonData, encoding: .utf8)!
-                    print(jsonString)
-                } catch {
-                    print(error)
-                }
-            }
             
             completion(results)
         }
 
         task.resume()
+    }
+    
+    private func constructJSON(results: [iTunesResult]) -> String? {
+        let kinds = Set(results.compactMap({ $0.kind }))
+        
+        var jsonArray = [String: [iTunesServiceAPIResult]]()
+        for kind in kinds {
+            jsonArray[kind] = results
+                .filter({ $0.kind == kind })
+                .compactMap({ iTunesServiceAPIResult(from: $0) })
+        }
+        
+        guard let jsonData = try? JSONEncoder().encode(jsonArray) else {
+            return nil
+        }
+        
+        guard let jsonString = String(data: jsonData, encoding: .utf8) else {
+            return nil
+        }
+        
+        print(jsonString)
+        return jsonString
+    }
+    
+    // MARK: - Public APIs
+
+    public func search(with query: String, completion: @escaping (String?) -> Void) {
+        searchItunes(with: query) { [weak self] results in
+            completion(self?.constructJSON(results: results))
+        }
     }
 
 }

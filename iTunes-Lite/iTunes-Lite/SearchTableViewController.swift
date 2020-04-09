@@ -15,9 +15,9 @@ final class SearchTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        iTunesService.shared.searchItunes(with: "brad+pitt") { [weak self] resp in
-            DispatchQueue.main.async {
-                self?.resp = resp
+        iTunesService.shared.search(with: "brad+pitt") { json in
+            DispatchQueue.main.async { [weak self] in
+                self?.resp = self?.resp
                 self?.tableView.reloadData()
             }
         }
