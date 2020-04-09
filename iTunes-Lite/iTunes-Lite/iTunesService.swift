@@ -56,6 +56,8 @@ enum MediaKind: Int, CaseIterable {
     }
 }
 
+
+/// Object for internally formatted JSON result.
 struct iTunesServiceAPIResult: Codable {
     var id: Int // trackId (ID of entity)
     var name: String // name of entity
@@ -77,10 +79,11 @@ final class iTunesService {
     // MARK: - Properties
     
     static var shared = iTunesService()
-    private var baseEnpoint = "https://itunes.apple.com/search?term="//jack+johnson
+    private var baseEnpoint = "https://itunes.apple.com/search?term="
     
-    // MARK: - Private APIs
+    // MARK: - Private APIs for iTunes Calls
     
+    /// Searches itunes via given api.
     private func searchItunes(with query: String, completion: @escaping ([iTunesResult]) -> Void) {
         guard let url = URL(string: baseEnpoint + query) else {
             completion([])
@@ -109,6 +112,7 @@ final class iTunesService {
         task.resume()
     }
     
+    /// Creates json from results from itunes search in desired format.
     private func constructJSON(results: [iTunesResult]) -> String? {
         let kinds = Set(results.compactMap({ $0.kind }))
         
@@ -127,15 +131,44 @@ final class iTunesService {
             return nil
         }
         
-        print(jsonString)
         return jsonString
+    }
+    
+    // MARK: - Private APIs for Internal Calls
+    
+    /// Take the JSON that we formatted according to the assignment requirements and convert into objects for use within the app.
+    private func parseInternalJSON(json: String) -> [String: [iTunesServiceAPIResult]] {
+        guard let data = json.data(using: .utf8) else {
+            return [:]
+        }
+        
+        guard let internalResponse = try? JSONDecoder().decode([String: [iTunesServiceAPIResult]].self, from: data) else {
+            return [:]
+        }
+        
+        return internalResponse
     }
     
     // MARK: - Public APIs
 
-    public func search(with query: String, completion: @escaping (String?) -> Void) {
+    public func search(with query: String, completion: @escaping ([String: [iTunesServiceAPIResult]]) -> Void) {
+        /// Make call to iTunes API.
         searchItunes(with: query) { [weak self] results in
-            completion(self?.constructJSON(results: results))
+            
+            /// Format JSON as desired to fulfill assignment requirements.
+            guard let json = self?.constructJSON(results: results) else {
+                completion([:])
+                return
+            }
+            
+            /// Convert JSON to objects that can be used to populate TableView to fulfill assignment requirements.
+            guard let internalResult = self?.parseInternalJSON(json: json) else {
+                completion([:])
+                return
+            }
+            
+            /// Note: I would not normally do the extra conversion, but I did so in order to show that the API is returning the JSON in the format we want.
+            completion(internalResult)
         }
     }
 

@@ -10,25 +10,31 @@ import UIKit
 
 final class SearchTableViewController: UITableViewController {
     
-    var resp: [iTunesResult]?
+    var sections = [String]()
+    var results = [[iTunesServiceAPIResult]]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        iTunesService.shared.search(with: "brad+pitt") { json in
+        iTunesService.shared.search(with: "brad+pitt") { result in
             DispatchQueue.main.async { [weak self] in
-                self?.resp = self?.resp
+                self?.sections = Array(result.keys)
+                self?.results = Array(result.values)
                 self?.tableView.reloadData()
             }
         }
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return sections.count
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sections[section]
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return resp?.count ?? 0
+        return results[section].count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
