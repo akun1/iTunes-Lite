@@ -29,7 +29,7 @@ final class SearchTableViewController: UITableViewController {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search Candies"
+        searchController.searchBar.placeholder = "Search iTunes Lite"
         navigationItem.searchController = searchController
         definesPresentationContext = true
     }
