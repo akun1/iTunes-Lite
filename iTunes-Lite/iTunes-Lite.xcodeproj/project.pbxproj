@@ -13,6 +13,7 @@
 		C04321F3243FB5A4007CF416 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C04321F1243FB5A4007CF416 /* Main.storyboard */; };
 		C04321F5243FB5A5007CF416 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C04321F4243FB5A5007CF416 /* Assets.xcassets */; };
 		C04321F8243FB5A5007CF416 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C04321F6243FB5A5007CF416 /* LaunchScreen.storyboard */; };
+		C0432200243FB65C007CF416 /* iTunesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04321FF243FB65C007CF416 /* iTunesService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		C04321F4243FB5A5007CF416 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C04321F7243FB5A5007CF416 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C04321F9243FB5A5007CF416 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C04321FF243FB65C007CF416 /* iTunesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				C04321F4243FB5A5007CF416 /* Assets.xcassets */,
 				C04321F6243FB5A5007CF416 /* LaunchScreen.storyboard */,
 				C04321F9243FB5A5007CF416 /* Info.plist */,
+				C04321FF243FB65C007CF416 /* iTunesService.swift */,
 			);
 			path = "iTunes-Lite";
 			sourceTree = "<group>";
@@ -141,6 +144,7 @@
 				C04321F0243FB5A4007CF416 /* ViewController.swift in Sources */,
 				C04321EC243FB5A4007CF416 /* AppDelegate.swift in Sources */,
 				C04321EE243FB5A4007CF416 /* SceneDelegate.swift in Sources */,
+				C0432200243FB65C007CF416 /* iTunesService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
