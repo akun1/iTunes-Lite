@@ -91,7 +91,7 @@ final class SearchTableViewController: UITableViewController {
                 
                 if let loadedFavorites = try? decoder.decode([iTunesServiceAPIResult].self, from: favoritesData) {
                     let encoder = JSONEncoder()
-                    var updatedFavorites = loadedFavorites.filter({ $0.id == result.id })
+                    let updatedFavorites = loadedFavorites.filter({ $0.id == result.id })
                     
                     if let encoded = try? encoder.encode(updatedFavorites) {
                         UserDefaults.standard.set(encoded, forKey: "Favorites")
@@ -101,7 +101,7 @@ final class SearchTableViewController: UITableViewController {
         }
         
         cell.favoriteAction = favoriteAction
-        cell.unfavoriteAction = favoriteAction
+        cell.unfavoriteAction = unfavoriteAction
         
         return cell
     }
