@@ -10,12 +10,12 @@ import UIKit
 
 final class SearchTableViewController: UITableViewController {
     
-    var resp: iTunesResponse?
+    var resp: [iTunesResult]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        iTunesService.shared.makeReq { [weak self] resp in
+        iTunesService.shared.searchItunes(with: "brad+pitt") { [weak self] resp in
             DispatchQueue.main.async {
                 self?.resp = resp
                 self?.tableView.reloadData()
@@ -28,7 +28,7 @@ final class SearchTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return resp?.resultCount ?? 0
+        return resp?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
