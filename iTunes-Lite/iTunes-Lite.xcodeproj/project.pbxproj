@@ -16,6 +16,7 @@
 		C0432202243FB810007CF416 /* iTunesResponseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0432201243FB810007CF416 /* iTunesResponseObject.swift */; };
 		C0432204243FBDC1007CF416 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0432203243FBDC1007CF416 /* SearchTableViewController.swift */; };
 		C0432206243FD67C007CF416 /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0432205243FD67C007CF416 /* SearchResultTableViewCell.swift */; };
+		C0432208243FE44B007CF416 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0432207243FE44B007CF416 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		C0432201243FB810007CF416 /* iTunesResponseObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesResponseObject.swift; sourceTree = "<group>"; };
 		C0432203243FBDC1007CF416 /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
 		C0432205243FD67C007CF416 /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
+		C0432207243FE44B007CF416 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 				C04321FF243FB65C007CF416 /* iTunesService.swift */,
 				C0432201243FB810007CF416 /* iTunesResponseObject.swift */,
 				C0432205243FD67C007CF416 /* SearchResultTableViewCell.swift */,
+				C0432207243FE44B007CF416 /* Extensions.swift */,
 			);
 			path = "iTunes-Lite";
 			sourceTree = "<group>";
@@ -153,6 +156,7 @@
 				C0432202243FB810007CF416 /* iTunesResponseObject.swift in Sources */,
 				C04321EE243FB5A4007CF416 /* SceneDelegate.swift in Sources */,
 				C0432200243FB65C007CF416 /* iTunesService.swift in Sources */,
+				C0432208243FE44B007CF416 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

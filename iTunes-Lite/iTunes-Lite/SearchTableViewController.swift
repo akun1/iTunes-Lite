@@ -19,13 +19,25 @@ final class SearchTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadData()
+        setupUI()
     }
     
     // MARK: - Setup
     
-    private func loadData() {
-        iTunesService.shared.search(with: "brad+pitt") { result in
+    private func setupUI() {
+        title = "iTunes Lite"
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Candies"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+    }
+    
+    private func search(with query: String) {
+        let cleanQuery = query.replacingOccurrences(of: " ", with: "+")
+        
+        iTunesService.shared.search(with: cleanQuery) { result in
             DispatchQueue.main.async { [weak self] in
                 self?.sections = Array(result.keys)
                 self?.results = Array(result.values)
@@ -60,20 +72,12 @@ final class SearchTableViewController: UITableViewController {
     }
 }
 
-extension UIImageView {
-    func load(urlString: String) {
-        guard let url = URL(string: urlString) else {
+extension SearchTableViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let query = searchController.searchBar.text else {
             return
         }
         
-        DispatchQueue.global().async { [weak self] in
-            if let data = try? Data(contentsOf: url) {
-                if let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        self?.image = image
-                    }
-                }
-            }
-        }
+        search(with: query)
     }
 }
