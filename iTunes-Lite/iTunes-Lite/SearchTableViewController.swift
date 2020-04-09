@@ -14,15 +14,18 @@ final class SearchTableViewController: UITableViewController {
     
     var sections = [String]()
     var results = [[iTunesServiceAPIResult]]()
+    var favorites = [iTunesServiceAPIResult]()
     
     // MARK - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        loadFavorites()
     }
     
     // MARK: - Setup
+
     
     private func setupUI() {
         title = "iTunes Lite"
@@ -32,6 +35,19 @@ final class SearchTableViewController: UITableViewController {
         searchController.searchBar.placeholder = "Search iTunes Lite"
         navigationItem.searchController = searchController
         definesPresentationContext = true
+    }
+    
+    private func loadFavorites() {
+        if let favoritesData = UserDefaults.standard.object(forKey: "Favorites") as? Data {
+            let decoder = JSONDecoder()
+            
+            if let loadedFavorites = try? decoder.decode([iTunesServiceAPIResult].self, from: favoritesData) {
+                DispatchQueue.main.async { [weak self] in
+                    self?.favorites = loadedFavorites
+                    self?.tableView.reloadSections([0], with: .automatic)
+                }
+            }
+        }
     }
     
     private func search(with query: String) {
@@ -102,6 +118,12 @@ final class SearchTableViewController: UITableViewController {
         
         cell.favoriteAction = favoriteAction
         cell.unfavoriteAction = unfavoriteAction
+        
+        if favorites.contains(where: { $0.id == result.id }) {
+            cell.favorite()
+        } else {
+            cell.unfavorite()
+        }
         
         return cell
     }
