@@ -13,10 +13,18 @@ final class iTunesService {
     private var baseEnpoint = "https://itunes.apple.com/search?term="//jack+johnson
     
     public func makeReq() {
-        let url = URL(string: baseEnpoint + "jack+johnson")!
+        guard let url = URL(string: baseEnpoint + "jack+johnson") else {
+            return
+        }
+        
         let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
-            guard let data = data else { return }
-            print(String(data: data, encoding: .utf8)!)
+            guard let data = data else {
+                return
+            }
+            
+            guard let response = try? JSONDecoder().decode(iTunesResponse.self, from: data) else {
+                return
+            }
         }
 
         task.resume()
