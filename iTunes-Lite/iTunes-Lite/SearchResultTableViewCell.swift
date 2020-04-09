@@ -26,6 +26,6 @@ final class SearchResultTableViewCell: UITableViewCell {
     
     private func setupUI() {
         selectionStyle = .none
-        resultImageView.layer.cornerRadius = 10
+        resultImageView.layer.cornerRadius = 6
     }
 }
