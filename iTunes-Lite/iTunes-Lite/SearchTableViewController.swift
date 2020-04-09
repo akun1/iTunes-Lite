@@ -68,6 +68,41 @@ final class SearchTableViewController: UITableViewController {
         cell.genreLabel.text = result.genre
         cell.itunesLinkLabel.text = result.url
         cell.resultImageView.load(urlString: result.artwork)
+        
+        let favoriteAction = {
+            if let favoritesData = UserDefaults.standard.object(forKey: "Favorites") as? Data {
+                let decoder = JSONDecoder()
+                
+                if let loadedFavorites = try? decoder.decode([iTunesServiceAPIResult].self, from: favoritesData) {
+                    let encoder = JSONEncoder()
+                    var updatedFavorites = loadedFavorites
+                    updatedFavorites.append(result)
+                    
+                    if let encoded = try? encoder.encode(updatedFavorites) {
+                        UserDefaults.standard.set(encoded, forKey: "Favorites")
+                    }
+                }
+            }
+        }
+        
+        let unfavoriteAction = {
+            if let favoritesData = UserDefaults.standard.object(forKey: "Favorites") as? Data {
+                let decoder = JSONDecoder()
+                
+                if let loadedFavorites = try? decoder.decode([iTunesServiceAPIResult].self, from: favoritesData) {
+                    let encoder = JSONEncoder()
+                    var updatedFavorites = loadedFavorites.filter({ $0.id == result.id })
+                    
+                    if let encoded = try? encoder.encode(updatedFavorites) {
+                        UserDefaults.standard.set(encoded, forKey: "Favorites")
+                    }
+                }
+            }
+        }
+        
+        cell.favoriteAction = favoriteAction
+        cell.unfavoriteAction = favoriteAction
+        
         return cell
     }
 }

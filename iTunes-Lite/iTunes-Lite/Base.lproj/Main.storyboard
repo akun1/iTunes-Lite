@@ -34,7 +34,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="5wJ-Vb-0Ju">
                                                     <rect key="frame" x="99" y="39.5" width="275" height="62.5"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="Once Upon a Time in Hollywood" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DFJ-8R-5U3">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Once Upon a Time in Hollywood" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DFJ-8R-5U3">
                                                             <rect key="frame" x="0.0" y="0.0" width="267.5" height="21.5"/>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                                             <nil key="textColor"/>
@@ -56,11 +56,25 @@
                                                 </stackView>
                                             </subviews>
                                         </stackView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NkV-e5-tkc">
+                                            <rect key="frame" x="369" y="20" width="25" height="22"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="25" id="Q8K-6F-PzF"/>
+                                                <constraint firstAttribute="height" constant="22" id="yYD-m3-U8q"/>
+                                            </constraints>
+                                            <state key="normal" title="Button" image="heart" catalog="system"/>
+                                            <state key="selected" image="heart.fill" catalog="system"/>
+                                            <connections>
+                                                <action selector="favoriteButtonTapped" destination="tV8-0Q-W6A" eventType="touchUpInside" id="Hd9-IA-y1e"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="jeD-dr-GPV" secondAttribute="bottom" constant="20" symbolic="YES" id="PlR-q1-qvI"/>
+                                        <constraint firstItem="NkV-e5-tkc" firstAttribute="top" secondItem="Qbn-6n-2WF" secondAttribute="top" constant="20" symbolic="YES" id="QcG-Mb-gQs"/>
                                         <constraint firstItem="jeD-dr-GPV" firstAttribute="leading" secondItem="Qbn-6n-2WF" secondAttribute="leading" constant="20" symbolic="YES" id="g7D-ui-1tt"/>
                                         <constraint firstItem="jeD-dr-GPV" firstAttribute="top" secondItem="Qbn-6n-2WF" secondAttribute="top" constant="20" symbolic="YES" id="nIj-gE-iAA"/>
+                                        <constraint firstAttribute="trailing" secondItem="NkV-e5-tkc" secondAttribute="trailing" constant="20" symbolic="YES" id="oqU-sO-QIw"/>
                                         <constraint firstAttribute="trailing" secondItem="jeD-dr-GPV" secondAttribute="trailing" constant="20" symbolic="YES" id="pec-9H-lUy"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -68,6 +82,7 @@
                                     <constraint firstItem="RXD-jZ-Z88" firstAttribute="width" secondItem="tV8-0Q-W6A" secondAttribute="width" multiplier="0.2" id="0JS-DC-etQ"/>
                                 </constraints>
                                 <connections>
+                                    <outlet property="favoriteButton" destination="NkV-e5-tkc" id="7uT-7D-rax"/>
                                     <outlet property="genreLabel" destination="ShT-kv-dkg" id="f5O-cv-j54"/>
                                     <outlet property="itunesLinkLabel" destination="HGh-fb-InX" id="5ac-Pj-jtV"/>
                                     <outlet property="resultImageView" destination="RXD-jZ-Z88" id="2hB-Kw-77I"/>
@@ -105,4 +120,8 @@
             <point key="canvasLocation" x="130.43478260869566" y="98.4375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="heart" catalog="system" width="128" height="109"/>
+        <image name="heart.fill" catalog="system" width="128" height="109"/>
+    </resources>
 </document>

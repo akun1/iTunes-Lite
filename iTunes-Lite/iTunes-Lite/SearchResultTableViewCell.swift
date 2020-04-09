@@ -16,6 +16,12 @@ final class SearchResultTableViewCell: UITableViewCell {
     @IBOutlet weak var itunesLinkLabel: UILabel!
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var resultImageView: UIImageView!
+    @IBOutlet weak var favoriteButton: UIButton!
+    
+    // MARK: - Properties
+    
+    var favoriteAction: (() -> Void)?
+    var unfavoriteAction: (() -> Void)?
     
     // MARK: - Life Cycle
 
@@ -27,5 +33,27 @@ final class SearchResultTableViewCell: UITableViewCell {
     private func setupUI() {
         selectionStyle = .none
         resultImageView.layer.cornerRadius = 6
+    }
+    
+    // MARK: - Actions
+    
+    @IBAction func favoriteButtonTapped() {
+        if favoriteButton.isSelected {
+            unfavorite()
+        } else {
+            favorite()
+        }
+    }
+    
+    // MARK: - Helpers
+    
+    func unfavorite() {
+        unfavoriteAction?()
+        favoriteButton.isSelected = false
+    }
+    
+    func favorite() {
+        favoriteAction?()
+        favoriteButton.isSelected = true
     }
 }
